@@ -5,6 +5,10 @@
  */
 package br.ufsc.ine5605.sistemaru;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -15,19 +19,34 @@ import java.util.HashMap;
 public class Restaurante {
     private Date diaAtual;
     private HashMap<Date, Integer> acessosRU;
+    private ControladorPrincipal controladorPrincipal; 
     
-    public Restaurante(){
-        this.diaAtual = new Date();
+            
+            
+    public Restaurante(ControladorPrincipal controladorPrincipal){
+        Date dataDate = new Date();
+        DateFormat dataSimple = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataFormatada = new Date(dataSimple.format(dataDate));
+        this.diaAtual = dataFormatada;
         acessosRU = new HashMap();
+        this.controladorPrincipal = controladorPrincipal;
     }
 
     public Date getDiaAtual() {
         return diaAtual;
     }
 
-    public void proximoDia(Date proximoDia) {
-        this.diaAtual = proximoDia;
+    public void proximoDia() {
+        
         // conta o numero de pessoas que comeu no dia e guarda no hash
+        int count = 0;
+        for (Pessoa pessoaCadastrada : controladorPrincipal.getControladorAdm().getPessoas()){
+            ArrayList <TipoRefeicao> refeicoesHoje = pessoaCadastrada.getRegistrosRefeicoes().get(this.diaAtual);
+            count+= refeicoesHoje.size();
+        }
+        acessosRU.put(diaAtual,count);
+        this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
+        
     }
 
     public HashMap<Date, Integer> getAcessosRU() {
