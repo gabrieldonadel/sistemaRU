@@ -38,7 +38,6 @@ public abstract class TelaPadrao extends JFrame{
         super.getContentPane().add(labelDiaHoje, BorderLayout.SOUTH);
         super.getContentPane().add(panel, BorderLayout.CENTER);
         setSize(600,400);
-        //setContentPane(panel);
         
     }
     
