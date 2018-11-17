@@ -44,7 +44,7 @@ public class TelaRelatorioAdm extends TelaPadrao{
     
 
     public TelaRelatorioAdm() {
-
+        this.gerenciadorBotoes = new GerenciadorBotoes();
     }
     
     @Override
@@ -146,13 +146,11 @@ public class TelaRelatorioAdm extends TelaPadrao{
     }
     
     public void mostraRelatorio(String dataInicial, String dataFinal, int count){
-        System.out.println("");
-        System.out.println("#############################");
-        System.out.println("######  RELATORIO ADM  ######");
-        System.out.println("#############################");
-        System.out.println("");
-        System.out.println("DE "+dataInicial+" ATÉ "+ dataFinal + "\nFORAM REGISTRADOS " + count + " ACESSOS AO RESTAURANTE.");
-    
+        String s ="#############################\n";
+        s += "######  RELATORIO ADM   ######\n";
+        s += "#############################\n";
+        s += "\nDE "+dataInicial+" ATÉ "+ dataFinal + "\nFORAM REGISTRADOS " + count + " ACESSOS AO RESTAURANTE.";
+        JOptionPane.showMessageDialog(null, s);
     }
     
     private class GerenciadorBotoes implements ActionListener{
@@ -163,9 +161,10 @@ public class TelaRelatorioAdm extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonRelatorio)){
                 try{
-                    getContentPane().removeAll();
-                    escondeTela();
-                    ControladorAdm.getInstance().chamaTelaAdmListar();
+                    System.out.println();
+                    ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataInicial = textFieldDataInicial.getText();
+                    ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataFinal = textFieldDataFinal.getText();
+                    ControladorRelatorioAdm.getInstance().relatorioRefeicao();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
