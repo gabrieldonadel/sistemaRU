@@ -200,8 +200,9 @@ public class TelaAdmEditar extends TelaPadrao{
             System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
-                    ControladorAdm.getInstance().chamaTelaAdmListar();
                     getContentPane().removeAll();
+                    escondeTela();
+                    ControladorAdm.getInstance().chamaTelaAdmListar();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);

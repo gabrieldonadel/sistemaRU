@@ -12,6 +12,6 @@ package br.ufsc.ine5605.sistemaru.exceptions;
 public class DataInvalidaException extends Exception{
     
     public DataInvalidaException(){
-        super("A DATA DIGITADA É INVALIDA");
+        super("A data digitada é invalida, siga o padrão dd/mm/yyyy");
     }
 }

@@ -146,10 +146,7 @@ public class TelaRelatorioAdm extends TelaPadrao{
     }
     
     public void mostraRelatorio(String dataInicial, String dataFinal, int count){
-        String s ="#############################\n";
-        s += "######  RELATORIO ADM   ######\n";
-        s += "#############################\n";
-        s += "\nDE "+dataInicial+" ATÉ "+ dataFinal + "\nFORAM REGISTRADOS " + count + " ACESSOS AO RESTAURANTE.";
+        String s = "DE "+dataInicial+" ATÉ "+ dataFinal + "\nFORAM REGISTRADOS " + count + " ACESSOS AO RESTAURANTE.";
         JOptionPane.showMessageDialog(null, s);
     }
     

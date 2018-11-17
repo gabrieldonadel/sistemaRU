@@ -208,11 +208,7 @@ public class TelaUsuario extends TelaPadrao{
     }
 
     public void mostraRelatorioUsuario(int nRefeicoesMes1, int nRefeicoesMes2, int nRefeicoesMes3) {
-        String s = "#######################\n";
-        s += "#####   RELATÓRIO   #####\n";
-        s +="#######################\n";
-        
-        s +="REFEIÇÕES NO MES: "+nRefeicoesMes1+"\n";
+        String s ="REFEIÇÕES NO MES: "+nRefeicoesMes1+"\n";
         s +="REFEIÇÕES NO ÚLTIMO MES: "+nRefeicoesMes2+"\n";
         s +="REFEIÇÕES NO PENÚLTIMO MES: "+nRefeicoesMes3+"\n";
         s +="\n";

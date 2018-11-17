@@ -39,7 +39,7 @@ public class ControladorRelatorioAdm {
         return conteudoTelaRelatorioAdm;
     }
     
-    public void relatorioRefeicao(){
+    public void relatorioRefeicao() throws DataInvalidaException{
         
         Date dataInicial = null;
         Date dataFinal = null;
@@ -70,13 +70,15 @@ public class ControladorRelatorioAdm {
 
             telaRelatorioAdm.mostraRelatorio(conteudoTelaRelatorioAdm.dataInicial, conteudoTelaRelatorioAdm.dataFinal, contadorRefeicoes);
         }catch(DataInvalidaException e){
-            System.out.println(e);
+            throw e;
         }catch(Exception e){System.out.println(e);}
     }
     
     public Date stringToDate(String data) throws DataInvalidaException{
+        
         try{
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            dateFormat.setLenient(false);
             return dateFormat.parse(data);
         } catch(Exception e) {
             throw new DataInvalidaException();
