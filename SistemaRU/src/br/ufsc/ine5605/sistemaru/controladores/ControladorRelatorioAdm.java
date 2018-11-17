@@ -51,14 +51,11 @@ public class ControladorRelatorioAdm {
             Date atual = dataInicial;
             int contadorRefeicoes = 0;
             HashMap<Date,Integer> acessosRU = ControladorPrincipal.getInstance().getMapeadorRestaurante().getResturante().getAcessosRU();
-            System.out.println(acessosRU.toString());
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
             Calendar cal = Calendar.getInstance();
             while(atual.before(dataFinal)){
-                System.out.println(atual);
                 if(acessosRU.get(dateFormat.parse(atual.getDate()+"-"+(atual.getMonth()+1)+"-"+(atual.getYear()+1900))) != null){
-//                    contadorRefeicoes += acessosRU.get(atual);
                     contadorRefeicoes += acessosRU.get(dateFormat.parse(atual.getDate()+"-"+(atual.getMonth()+1)+"-"+(atual.getYear()+1900)));
                     System.out.println("Atual: "+dateFormat.parse(atual.getDate()+"-"+(atual.getMonth()+1)+"-"+(atual.getYear()+1900)));
                 }

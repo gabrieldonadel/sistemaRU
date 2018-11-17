@@ -43,8 +43,6 @@ public class Restaurante implements Serializable{
     }
 
     public void proximoDia() {
-        int count = 0;
-        acessosRU.put(diaAtual,count);
         Calendar cal = Calendar.getInstance();
         cal.setTime(this.diaAtual);
         cal.add(Calendar.DAY_OF_MONTH, 1);

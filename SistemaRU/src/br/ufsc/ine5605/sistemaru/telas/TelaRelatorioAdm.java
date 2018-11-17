@@ -127,7 +127,7 @@ public class TelaRelatorioAdm extends TelaPadrao{
         container.add(buttonVoltar, gbc);
         
         setSize(new Dimension(600, 400));
-        setVisible(true);
+        mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /*
