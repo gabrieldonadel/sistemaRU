@@ -69,10 +69,14 @@ public class MapeadorRestaurante {
         }catch(IOException e){
             System.out.println(e);
         }
-    
+        load();
     }
     public Restaurante getResturante(){
         return (cacheRestaurante != null) ? cacheRestaurante : null;
+    }
+    
+    public void setRestaurante(Restaurante restaurante){
+        this.cacheRestaurante = restaurante;
     }
     
 }

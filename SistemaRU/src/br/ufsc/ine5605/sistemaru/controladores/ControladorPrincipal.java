@@ -50,7 +50,10 @@ public class ControladorPrincipal {
     public ControladorRelatorioAdm getControladorRelatorioAdm() {
         return controladorRelatorioAdm;
     }
-
+    
+    public MapeadorRestaurante getMapeadorRestaurante() {
+        return mapeadorRestaurante;
+    }
     public Restaurante getRestaurante() {
         return this.mapeadorRestaurante.getResturante();
     }

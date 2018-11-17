@@ -9,6 +9,7 @@ import br.ufsc.ine5605.sistemaru.exceptions.DataInvalidaException;
 import br.ufsc.ine5605.sistemaru.telas.ConteudoTelaRelatorioAdm;
 import br.ufsc.ine5605.sistemaru.telas.TelaRelatorioAdm;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -49,20 +50,28 @@ public class ControladorRelatorioAdm {
         
             Date atual = dataInicial;
             int contadorRefeicoes = 0;
-            HashMap<Date,Integer> acessosRU = ControladorPrincipal.getInstance().getRestaurante().getAcessosRU();
+            HashMap<Date,Integer> acessosRU = ControladorPrincipal.getInstance().getMapeadorRestaurante().getResturante().getAcessosRU();
+            System.out.println(acessosRU.toString());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-
+            Calendar cal = Calendar.getInstance();
             while(atual.before(dataFinal)){
-                if(acessosRU.get(atual) != null){
-                    contadorRefeicoes += acessosRU.get(atual);
+                System.out.println(atual);
+                if(acessosRU.get(dateFormat.parse(atual.getDate()+"-"+(atual.getMonth()+1)+"-"+(atual.getYear()+1900))) != null){
+//                    contadorRefeicoes += acessosRU.get(atual);
+                    contadorRefeicoes += acessosRU.get(dateFormat.parse(atual.getDate()+"-"+(atual.getMonth()+1)+"-"+(atual.getYear()+1900)));
+                    System.out.println("Atual: "+dateFormat.parse(atual.getDate()+"-"+(atual.getMonth()+1)+"-"+(atual.getYear()+1900)));
                 }
-                atual = new Date(atual.getTime() + (1000*60*60*24));
+                cal.setTime(atual);
+                cal.add(Calendar.DAY_OF_MONTH, 1);
+                atual = cal.getTime();
+               
             }
 
             telaRelatorioAdm.mostraRelatorio(conteudoTelaRelatorioAdm.dataInicial, conteudoTelaRelatorioAdm.dataFinal, contadorRefeicoes);
         }catch(DataInvalidaException e){
             System.out.println(e);
-        }
+        }catch(Exception e){System.out.println(e);}
     }
     
     public Date stringToDate(String data) throws DataInvalidaException{

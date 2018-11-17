@@ -12,6 +12,7 @@ import br.ufsc.ine5605.sistemaru.enuns.TipoRefeicao;
 import br.ufsc.ine5605.sistemaru.telas.TelaUsuario;
 import br.ufsc.ine5605.sistemaru.entidades.UsuarioUFSC;
 import br.ufsc.ine5605.sistemaru.entidades.Visitante;
+import br.ufsc.ine5605.sistemaru.mapeadores.MapeadorRestaurante;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -73,9 +74,18 @@ public class ControladorUsuario {
                 pessoa.adicionaRefeicao(hoje, tipo);
                 telaUsuario.mostraSucessoRefeicao();
                 ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
-                int nRefeicoes = (Restaurante.getInstance().getAcessosRU().get(hoje) != null) ? Restaurante.getInstance().getAcessosRU().get(hoje) :0;
-                Restaurante.getInstance().getAcessosRU().put(hoje, nRefeicoes+1);
-                System.out.println(nRefeicoes+1);
+                
+                
+                
+                int nRefeicoes = (ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().get(hoje) != null) ? ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().get(hoje) :0;
+                System.out.println("add data");
+                ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().put(hoje, nRefeicoes+1);
+                System.out.println("acessos: " +ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().toString());
+                
+                //persistencia
+                ControladorPrincipal.getInstance().getMapeadorRestaurante().setRestaurante(ControladorPrincipal.getInstance().getRestaurante());
+                ControladorPrincipal.getInstance().getMapeadorRestaurante().persist();
+               
                 return;
             }
         }else{
@@ -91,9 +101,17 @@ public class ControladorUsuario {
             throw new SaldoInsuficienteException();
         }
         ControladorAdm.getInstance().getMapeadorPessoa().put(pessoa);
-        int nRefeicoes = (Restaurante.getInstance().getAcessosRU().get(hoje) != null) ? Restaurante.getInstance().getAcessosRU().get(hoje) :0;
-        Restaurante.getInstance().getAcessosRU().put(hoje, nRefeicoes+1);
-        System.out.println(nRefeicoes+1);
+        
+        
+        int nRefeicoes = (ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().get(hoje) != null) ? ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().get(hoje) :0;
+        System.out.println("add data");
+        ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().put(hoje, nRefeicoes+1);
+        System.out.println("acessos: " +ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().toString());
+
+        //persistencia
+        ControladorPrincipal.getInstance().getMapeadorRestaurante().setRestaurante(ControladorPrincipal.getInstance().getRestaurante());
+        ControladorPrincipal.getInstance().getMapeadorRestaurante().persist();
+
     }
     
     public void mostraTela(){
