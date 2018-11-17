@@ -109,7 +109,7 @@ public class ControladorUsuario {
         System.out.println("acessos: " +ControladorPrincipal.getInstance().getRestaurante().getAcessosRU().toString());
 
         //persistencia
-        ControladorPrincipal.getInstance().getMapeadorRestaurante().setRestaurante(ControladorPrincipal.getInstance().getRestaurante());
+        //ControladorPrincipal.getInstance().getMapeadorRestaurante().setRestaurante(ControladorPrincipal.getInstance().getRestaurante());
         ControladorPrincipal.getInstance().getMapeadorRestaurante().persist();
 
     }
