@@ -115,7 +115,6 @@ public class TelaAdm extends TelaPadrao{
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telAdm = ControladorAdm.getInstance().getTelaAdm();
-            System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonListar)){
                 try{
                     getContentPane().removeAll();

@@ -49,9 +49,6 @@ public class TelaRelatorioAdm extends TelaPadrao{
     
     @Override
     public void mostraConteudoTela() {
-        
-                      
-        //Container container = super.getPanel();
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -111,8 +108,6 @@ public class TelaRelatorioAdm extends TelaPadrao{
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth =2;
-        
-        
         container.add(buttonRelatorio, gbc);
         
         
@@ -122,28 +117,11 @@ public class TelaRelatorioAdm extends TelaPadrao{
         buttonVoltar.addActionListener(gerenciadorBotoes);
         buttonVoltar.setPreferredSize(new Dimension(80, 40));
         gbc.gridx = 2;
-        
-        
-        
         container.add(buttonVoltar, gbc);
         
         setSize(new Dimension(600, 400));
         mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        /*
-        clear();
-        System.out.println("##################################");
-        System.out.println("######  MENU RELATORIO ADM  ######");
-        System.out.println("##################################");
-        System.out.println("");
-        System.out.println("FORMATO DE ENTRADA DAS DATAS (DD/MM/AAAA)");
-        System.out.print("DIGITE DA INICIAL: ");
-        ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataInicial = leString();
-        System.out.print("DIGITE DA FINAL: ");
-        ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataFinal = leString();
-        
-        ControladorRelatorioAdm.getInstance().relatorioRefeicao();    */  
     }
     
     public void mostraRelatorio(String dataInicial, String dataFinal, int count){
@@ -156,10 +134,8 @@ public class TelaRelatorioAdm extends TelaPadrao{
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
-            System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonRelatorio)){
                 try{
-                    System.out.println();
                     ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataInicial = textFieldDataInicial.getText();
                     ControladorRelatorioAdm.getInstance().getConteudoTelaRelatorioAdm().dataFinal = textFieldDataFinal.getText();
                     ControladorRelatorioAdm.getInstance().relatorioRefeicao();

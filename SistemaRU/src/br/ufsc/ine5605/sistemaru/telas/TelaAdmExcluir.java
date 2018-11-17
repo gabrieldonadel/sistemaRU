@@ -105,7 +105,6 @@ public class TelaAdmExcluir extends TelaPadrao {
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telaExcluir = ControladorAdm.getInstance().getTelaAdmExcluir();
-            System.out.println("clicou: "+botao.getText());
             
             if(botao.equals(buttonVoltar)){
                 try{
@@ -118,11 +117,12 @@ public class TelaAdmExcluir extends TelaPadrao {
                 }
             }else if (botao.equals(buttonExcluir)){
                 try{
-                    getContentPane().removeAll();
+                    
                     ControladorAdm.getInstance().excluirUsiario(ControladorAdm.getInstance().getMatricula(pessoa));
                     JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso!");
-                    ControladorAdm.getInstance().chamaTelaAdmListar();
                     escondeTela();
+                    getContentPane().removeAll();
+                    ControladorAdm.getInstance().chamaTelaAdmListar();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);

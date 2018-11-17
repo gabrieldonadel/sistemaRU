@@ -143,7 +143,6 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telaExcluir = ControladorAdm.getInstance().getTelaAdmExcluir();
-            System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonVoltar)){
                 try{
                     getContentPane().removeAll();

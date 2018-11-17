@@ -11,6 +11,7 @@ import br.ufsc.ine5605.sistemaru.exceptions.MatriculainvalidaException;
 import br.ufsc.ine5605.sistemaru.telas.*;
 import br.ufsc.ine5605.sistemaru.entidades.*;
 import br.ufsc.ine5605.sistemaru.exceptions.NaoSelecionadoException;
+import br.ufsc.ine5605.sistemaru.exceptions.PrencheCampoNomeException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,31 +47,43 @@ public class ControladorAdm {
     public ArrayList<Pessoa> getPessoas() {
         return mapeadorPessoa.getList();
     }
-    public void cadastraUsuarioUFSC (ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException{
+    public void cadastraUsuarioUFSC (ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException, PrencheCampoNomeException{
         UsuarioUFSC usuario = desempacotaUsuarioUFSC(conteudoTelaAdm);
-        if (!idJaExiste(conteudoTelaAdm.codigo)){
-            mapeadorPessoa.put(usuario);
+        if(!conteudoTelaAdm.nome.equals("")){
+            if (!idJaExiste(conteudoTelaAdm.codigo)){
+                mapeadorPessoa.put(usuario);
+            }else{
+                throw new MatriculaJahExisteException();
+            }
         }else{
-            throw new MatriculaJahExisteException();
-        }
+            throw new PrencheCampoNomeException();
+        }    
     }
-    public void cadastraEstudante (ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException{
+    public void cadastraEstudante (ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException, PrencheCampoNomeException{
         Estudante estudante = desempacotaEstudante(conteudoTelaAdm);
-        if (!idJaExiste(conteudoTelaAdm.codigo)){
-            mapeadorPessoa.put(estudante);
+        if(!conteudoTelaAdm.nome.equals("")){
+            if (!idJaExiste(conteudoTelaAdm.codigo)){
+                mapeadorPessoa.put(estudante);
+            }else{
+                throw new MatriculaJahExisteException();
+            }
         }else{
-            throw new MatriculaJahExisteException();
-        }
+            throw new PrencheCampoNomeException();
+        }    
     }    
             
-    public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException{
+    public void cadastraVisitante(ConteudoTelaAdm conteudoTelaAdm) throws MatriculaJahExisteException, PrencheCampoNomeException{
         Visitante visitante = desempacotaVisitante(conteudoTelaAdm);
-        int codigo = geraID(); 
-        visitante.setId(codigo);
-        if (!idJaExiste(conteudoTelaAdm.codigo)){
-            mapeadorPessoa.put(visitante);
+        if(!conteudoTelaAdm.nome.equals("")){
+            int codigo = geraID(); 
+            visitante.setId(codigo);
+            if (!idJaExiste(conteudoTelaAdm.codigo)){
+                mapeadorPessoa.put(visitante);
+            }else{
+                throw new MatriculaJahExisteException();
+            }
         }else{
-            throw new MatriculaJahExisteException();
+            throw new PrencheCampoNomeException();
         }
     }
     
@@ -258,7 +271,7 @@ public class ControladorAdm {
     }
     
     public void chamaTelaAdmListar(){
-        Object [][] dados = new Object[mapeadorPessoa.getList().size()][3];
+        Object [][] dados = new Object[mapeadorPessoa.getList().size()][4];
         for(int i=0;i<mapeadorPessoa.getList().size();i++){
             Pessoa pessoa = mapeadorPessoa.getList().get(i);
             dados[i][0] = pessoa.getNome();
@@ -268,6 +281,7 @@ public class ControladorAdm {
             }else{
                 dados[i][2] = ((UsuarioUFSC)pessoa).getMatricula();
             }
+            dados[i][3] = pessoa.getSaldo();
         }
         telaAdmListar.mostraConteudoTela(dados);
     }

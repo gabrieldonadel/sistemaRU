@@ -308,8 +308,6 @@ public class TelaAdmCadastro extends TelaPadrao{
             TelaPadrao telaCadastro = ControladorAdm.getInstance().getTelaAdmListar();
             if(ae.getSource() instanceof JButton){
                 JButton botao = (JButton) ae.getSource();
-
-                System.out.println("clicou: "+botao.getText());
                 if(botao.equals(buttonVoltar)){
                     try{
                         getContentPane().removeAll();
@@ -350,7 +348,6 @@ public class TelaAdmCadastro extends TelaPadrao{
             }else{
                 JComboBox botaoBox = (JComboBox) ae.getSource();
                 String tipo = (String)botaoBox.getSelectedItem();
-                System.out.println("clicou: "+tipo);
                 switch (tipo){
                     case "USUÁRIO UFSC": AdicionaCamposUsuario();
                         break;

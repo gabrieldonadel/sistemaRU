@@ -55,7 +55,7 @@ public class TelaAdmListar extends TelaPadrao {
         
         //DADOS DA TABELA
         Object [][] pessoas = dados;
-        String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula"};
+        String [] colunas = {"Nome","Tipo de Cadastro", "Matrícula", "Saldo"};
         
         //TABELA
         gbc.gridx = 0;
@@ -122,7 +122,6 @@ public class TelaAdmListar extends TelaPadrao {
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telaListar = ControladorAdm.getInstance().getTelaAdmListar();
-            System.out.println("clicou: "+botao.getText());
             int linhaSelecionada = ControladorAdm.getInstance().getTelaAdmListar().getTabela().getSelectedRow();
             if(botao.equals(buttonVoltar)){
                 try{
@@ -145,8 +144,10 @@ public class TelaAdmListar extends TelaPadrao {
             
             }else if(botao.equals(buttonExcluir)){
                 try{
-                    ControladorAdm.getInstance().chamaTelaAdmExcluir(linhaSelecionada);
                     getContentPane().removeAll();
+                    escondeTela();
+                    ControladorAdm.getInstance().chamaTelaAdmExcluir(linhaSelecionada);
+                    
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, "Você não selecionou nenhum usuário!");
                     System.out.println(e);

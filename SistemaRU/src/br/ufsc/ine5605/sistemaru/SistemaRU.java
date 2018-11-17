@@ -9,6 +9,7 @@ import br.ufsc.ine5605.sistemaru.exceptions.MatriculainvalidaException;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorPrincipal;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorAdm;
 import br.ufsc.ine5605.sistemaru.exceptions.MatriculaJahExisteException;
+import br.ufsc.ine5605.sistemaru.exceptions.PrencheCampoNomeException;
 import br.ufsc.ine5605.sistemaru.telas.ConteudoTelaAdm;
 
 
@@ -21,27 +22,21 @@ public class SistemaRU {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PrencheCampoNomeException {
         
         ControladorPrincipal a = ControladorPrincipal.getInstance();
         ControladorAdm b = a.getControladorAdm();
-        ConteudoTelaAdm j = new ConteudoTelaAdm("admin",123456, true);
-        ConteudoTelaAdm x = new ConteudoTelaAdm("ze", 111, false, true);
-        ConteudoTelaAdm y = new ConteudoTelaAdm("doni",222, true,false);
-        ConteudoTelaAdm z = new ConteudoTelaAdm("solange");
-        ConteudoTelaAdm c = new ConteudoTelaAdm("Paulo",1341,false,false);
-        ConteudoTelaAdm d = new ConteudoTelaAdm("Geronimo",12341,false,false);
-        ConteudoTelaAdm r = new ConteudoTelaAdm("Geronimo",123241,false,false);
-        ConteudoTelaAdm h = new ConteudoTelaAdm("Geronimo",12341,false,false);
+        ConteudoTelaAdm x = new ConteudoTelaAdm("José Augusto", 111, false, true);
+        ConteudoTelaAdm y = new ConteudoTelaAdm("Gabriel Donadel",222, true,false);
+        ConteudoTelaAdm z = new ConteudoTelaAdm("Paulo");
+        ConteudoTelaAdm c = new ConteudoTelaAdm("Georgia",333,false,false);
+        ConteudoTelaAdm d = new ConteudoTelaAdm("Geremias",444,false,false);
         try{
-            b.cadastraUsuarioUFSC(j);
             b.cadastraEstudante(x);
             b.cadastraEstudante(y);
             b.cadastraVisitante(z);
             b.cadastraEstudante(c);
-            b.cadastraEstudante(d);
-            b.cadastraEstudante(r);
-            b.cadastraEstudante(h);
+            b.cadastraUsuarioUFSC(d);
         }catch (MatriculaJahExisteException e){System.out.println(e);};
         
         a.getTelaPrincipal().mostraConteudoTela();

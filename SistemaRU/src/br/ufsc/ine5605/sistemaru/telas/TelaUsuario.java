@@ -129,7 +129,6 @@ public class TelaUsuario extends TelaPadrao{
         @Override
         public void actionPerformed(ActionEvent ae){
             JButton botao = (JButton) ae.getSource();
-            System.out.println("clicou: "+botao.getText());
             if(botao.equals(buttonAlmoco)){
                 try{
                     ControladorUsuario.getInstance().validaRefeicao(0);
