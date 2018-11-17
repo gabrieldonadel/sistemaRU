@@ -36,6 +36,8 @@ public class TelaRelatorioAdm extends TelaPadrao{
     private JLabel labelTitulo;
     private JLabel labelDataInicial;
     private JFormattedTextField textFieldDataInicial;
+    private JLabel labelDataFinal;
+    private JFormattedTextField textFieldDataFinal;
     private JButton buttonRelatorio;
     private JButton buttonVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
@@ -62,11 +64,11 @@ public class TelaRelatorioAdm extends TelaPadrao{
         gbc.gridheight = 1;
         
         container.add(labelTitulo, gbc);
-        
+        //DATA INICIAL
         labelDataInicial = new JLabel();
         labelDataInicial.setText("Data Inicial: ");
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
         container.add(labelDataInicial, gbc);
@@ -80,6 +82,25 @@ public class TelaRelatorioAdm extends TelaPadrao{
         gbc.gridx = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         container.add(textFieldDataInicial, gbc);
+        
+        //DATA FINAL
+        labelDataFinal = new JLabel();
+        labelDataFinal.setText("Data Final: ");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        container.add(labelDataFinal, gbc);
+        
+        try{
+            textFieldDataFinal = new JFormattedTextField(new MaskFormatter("##/##/####"));
+        }catch(Exception e){System.out.println(e);}
+        textFieldDataFinal.setValue(null);
+        textFieldDataFinal.setColumns(6);
+    
+        gbc.gridx = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        container.add(textFieldDataFinal, gbc);
         
         //RELATÓRIO
         buttonRelatorio = new JButton();
