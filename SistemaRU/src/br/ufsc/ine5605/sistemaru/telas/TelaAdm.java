@@ -150,6 +150,10 @@ public class TelaAdm extends TelaPadrao{
                 JOptionPane.showMessageDialog(null, "Operação realizada com sucesso");
             }else if (botao.equals(buttonAdicionarSaldo)){
                 ControladorAdm.getInstance().chamaTelaAddSaldo();
+            }else if (botao.equals(buttonRelatorioRu)){
+                getContentPane().removeAll();
+                escondeTela();
+                ControladorAdm.getInstance().gerarRelatorioRu();
             }   
             
 

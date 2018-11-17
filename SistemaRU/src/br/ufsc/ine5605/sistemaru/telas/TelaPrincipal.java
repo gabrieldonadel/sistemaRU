@@ -66,7 +66,6 @@ public class TelaPrincipal extends TelaPadrao{
         container.add(labelLogin, gbc);
         
         
-        
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format) {
             public Object stringToValue(String string)
