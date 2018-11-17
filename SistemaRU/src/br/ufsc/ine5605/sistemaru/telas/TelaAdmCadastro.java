@@ -49,7 +49,7 @@ public class TelaAdmCadastro extends TelaPadrao{
     @Override
     public void mostraConteudoTela() {
         getContentPane().removeAll();
-        
+
         //CABEÇALHO    
         container = getContentPane();
         container.setLayout(new GridBagLayout());
@@ -78,9 +78,8 @@ public class TelaAdmCadastro extends TelaPadrao{
         setSize(new Dimension(600, 400));
         mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
     }
+
     public void AdicionaCamposUsuario(){
         removeComponentes();
         //CAMPO NOME       
@@ -184,7 +183,6 @@ public class TelaAdmCadastro extends TelaPadrao{
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.CENTER;
         container.add(labelMatricula, gbc);
-        
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format) {
             public Object stringToValue(String string)

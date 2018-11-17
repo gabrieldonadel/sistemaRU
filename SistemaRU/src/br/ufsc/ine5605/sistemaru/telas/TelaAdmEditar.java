@@ -51,23 +51,20 @@ public class TelaAdmEditar extends TelaPadrao{
         this.gerenciadorBotoes = new GerenciadorBotoes(this);
     }
     
-
     public void mostraConteudoTela(Pessoa pessoa) {
         this.pessoa = pessoa;
         getContentPane().removeAll();
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        
         int linha = 0;
-        
+
         //Nome
         labelNome = new JLabel();
         labelNome.setText("Nome:");
         gbc.gridx = 0;
         gbc.gridy = linha;
         linha++;
-        
         container.add(labelNome, gbc);
         
         textFieldNome = new JTextField(pessoa.getNome());
@@ -75,7 +72,6 @@ public class TelaAdmEditar extends TelaPadrao{
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridwidth=3;
         container.add(textFieldNome, gbc);
-        
         int matricula;
         //Matricula
         labelMatricula = new JLabel();
@@ -86,15 +82,12 @@ public class TelaAdmEditar extends TelaPadrao{
             labelMatricula.setText("Id:");
             matricula = ((Visitante)pessoa).getId();
         }
-
         gbc.gridx = 0;
         gbc.gridy = linha;
         linha++;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-
         container.add(labelMatricula, gbc);
-
         NumberFormat format = NumberFormat.getInstance();
         NumberFormatter formatter = new NumberFormatter(format) {
             public Object stringToValue(String string)
@@ -114,12 +107,10 @@ public class TelaAdmEditar extends TelaPadrao{
         formattedTextFieldMatricula = new JFormattedTextField(formatter);
         formattedTextFieldMatricula.setText(matricula+"");
         formattedTextFieldMatricula.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridwidth=3;
         container.add(formattedTextFieldMatricula, gbc);
-        
         //ADMIN
         if(pessoa instanceof UsuarioUFSC){
             labelIsento = new JLabel();
@@ -140,7 +131,6 @@ public class TelaAdmEditar extends TelaPadrao{
             gbc.gridwidth = 2;
             container.add(comboBoxAdmin, gbc);
         }
-        
         //ISENÇÃO
         if(pessoa instanceof Estudante){
             labelAdmin = new JLabel();
@@ -161,7 +151,7 @@ public class TelaAdmEditar extends TelaPadrao{
             gbc.gridwidth = 2;
             container.add(comboBoxIsento, gbc);
         }
-        
+
         //BOTAO EDITAR
         gbc.gridx = 0;
         gbc.gridy = linha;
@@ -171,7 +161,6 @@ public class TelaAdmEditar extends TelaPadrao{
         buttonEditar.addActionListener(gerenciadorBotoes);
         buttonEditar.setPreferredSize(new Dimension(100, 50));
         container.add(buttonEditar, gbc);
-        
         
         //BOTAO VOLTAR 
         gbc.gridx = 2;
@@ -198,16 +187,12 @@ public class TelaAdmEditar extends TelaPadrao{
     }
     
     private class GerenciadorBotoes implements ActionListener{
-        
         TelaAdmEditar tela;
 
         public GerenciadorBotoes(TelaAdmEditar tela) {
             this.tela = tela;
             
         }
-        
-        
-
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
@@ -221,7 +206,6 @@ public class TelaAdmEditar extends TelaPadrao{
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
                 }
-            
             }else if(botao.equals(buttonEditar)){
                 if(pessoa instanceof Visitante){
                     try{
@@ -251,8 +235,6 @@ public class TelaAdmEditar extends TelaPadrao{
                         JOptionPane.showMessageDialog(null, e.getMessage());
                     }
                 }
-                
-            
             }
         }
     }

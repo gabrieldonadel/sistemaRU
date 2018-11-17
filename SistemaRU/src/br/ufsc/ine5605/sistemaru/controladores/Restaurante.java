@@ -27,8 +27,6 @@ public class Restaurante implements Serializable{
     
     private Date diaAtual;
     private HashMap<Date, Integer> acessosRU;
-    
-            
             
     public Restaurante(){
         Date dataDate = new Date();
@@ -37,9 +35,7 @@ public class Restaurante implements Serializable{
         try{
             this.diaAtual = dateFormatMonthYear.parse(dateString); 
         }catch(Exception e){System.out.println(e);}     
-                
         acessosRU = new HashMap();
-        
     }
 
     public Date getDiaAtual() {
@@ -47,37 +43,21 @@ public class Restaurante implements Serializable{
     }
 
     public void proximoDia() {
-        
-        // conta o numero de pessoas que comeu no dia e guarda no hash
         int count = 0;
-        /*for (Pessoa pessoaCadastrada : ControladorPrincipal.getInstance().getControladorAdm().getPessoas()){
-            ArrayList <TipoRefeicao> refeicoesHoje = pessoaCadastrada.getRegistrosRefeicoes().get(this.diaAtual);
-            if (refeicoesHoje!=null){
-                count+= refeicoesHoje.size();
-            }
-            
-        }*/
         acessosRU.put(diaAtual,count);
-        
         Calendar cal = Calendar.getInstance();
         cal.setTime(this.diaAtual);
         cal.add(Calendar.DAY_OF_MONTH, 1);
         this.diaAtual = cal.getTime();
-        //this.diaAtual = new Date(this.diaAtual.getTime() + (1000*60*60*24));
-        
     }
     
     public void proximoMes() {
-        
         Calendar cal = Calendar.getInstance();
         cal.setTime(getDiaAtual());
         int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        
         for(int i=0;i<max;i++){
             proximoDia();
         }
-        
-        
     }
 
     public HashMap<Date, Integer> getAcessosRU() {
@@ -88,5 +68,4 @@ public class Restaurante implements Serializable{
         return (restaurante == null)? restaurante = new Restaurante() : restaurante;
 
     }
-    
 }

@@ -50,10 +50,8 @@ public class TelaAdm extends TelaPadrao{
         Container container = getContentPane();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        
-        
-        
-        //BOTAO Cadastros 
+
+        //BOTAO CADASTRO 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 4;
@@ -99,7 +97,6 @@ public class TelaAdm extends TelaPadrao{
         container.add(buttonPassarMes, gbc);
         
         //BOTAO VOLTAR 
-        
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 4;
@@ -108,11 +105,8 @@ public class TelaAdm extends TelaPadrao{
         buttonVoltar.setPreferredSize(new Dimension(500, 50));
         container.add(buttonVoltar, gbc);
         
-        
-        
-        
         setSize(new Dimension(600, 400));
-        setVisible(true);
+        mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private class GerenciadorBotoes implements ActionListener{
@@ -136,8 +130,6 @@ public class TelaAdm extends TelaPadrao{
                     getContentPane().removeAll();
                     escondeTela();
                     ControladorUsuario.getInstance().chamaTelaUsuario();
-                    
-                    
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);
@@ -155,8 +147,6 @@ public class TelaAdm extends TelaPadrao{
                 escondeTela();
                 ControladorAdm.getInstance().gerarRelatorioRu();
             }   
-            
-
         }
         
     }

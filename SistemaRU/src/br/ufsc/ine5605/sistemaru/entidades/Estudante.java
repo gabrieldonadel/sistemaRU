@@ -18,8 +18,6 @@ public class Estudante extends UsuarioUFSC{
         super(nome, matricula, admin);
         this.isencao = isencao;
     }
-    
-    
 
     public boolean isIsencao() {
         return isencao;
@@ -28,7 +26,4 @@ public class Estudante extends UsuarioUFSC{
     public void setIsencao(boolean isencao) {
         this.isencao = isencao;
     }
-    
-    
-    
 }

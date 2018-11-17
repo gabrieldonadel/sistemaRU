@@ -94,7 +94,6 @@ public class ControladorPrincipal {
         
     }
     
-    
     public Date diaAtual (){
         Date diaAtual = getRestaurante().getDiaAtual();
         return diaAtual;
@@ -105,8 +104,6 @@ public class ControladorPrincipal {
         return f.format(d);
     
     }
-    
-    
     
     public static ControladorPrincipal getInstance(){
         return (controladorPrincipal == null)? controladorPrincipal = new ControladorPrincipal() : controladorPrincipal;

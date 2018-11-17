@@ -23,13 +23,7 @@ import java.util.Random;
 public class ControladorAdm {
     
     private static ControladorAdm controladorAdm;
-    
-    
     private MapeadorPessoa mapeadorPessoa;
-    
-    //private ArrayList<Pessoa> pessoas;
-    
-    
     private TelaAdm telaAdm;
     private TelaAdmCadastro telaAdmCadastro;
     private TelaAdmExcluir telaAdmExcluir;
@@ -39,7 +33,6 @@ public class ControladorAdm {
     private ConteudoTelaAdm conteudoTelaAdm;
 
     private ControladorAdm() {
-        //this.pessoas = new ArrayList();
         this.mapeadorPessoa = new MapeadorPessoa();
         this.telaAdm = new TelaAdm();
         this.telaAdmCadastro = new TelaAdmCadastro();
@@ -81,8 +74,6 @@ public class ControladorAdm {
         }
     }
     
-   
-    
     public void excluirUsiario(int id) throws MatriculainvalidaException, Exception{
         if (idJaExiste(id)){
             Pessoa logado = ControladorPrincipal.getInstance().getControladorUsuarios().getPessoa();
@@ -96,7 +87,6 @@ public class ControladorAdm {
                                 return;
                             }else{
                                 mapeadorPessoa.remove(pessoa);
-                                telaAdm.operacaoRealizada();
                                 return;
                             }
                         }
@@ -104,11 +94,9 @@ public class ControladorAdm {
                         if(((UsuarioUFSC)pessoa).getMatricula() == id){
                              if (pessoa.getSaldo()> 0){
                                 mapeadorPessoa.remove(pessoa);
-                                telaAdm.operacaoRealizada();
                                 return;
                             }else{
                                 mapeadorPessoa.remove(pessoa);
-                                telaAdm.operacaoRealizada();
                                 return;
                             }
                         }
@@ -121,56 +109,7 @@ public class ControladorAdm {
             throw new MatriculainvalidaException();
         }    
     }
-    
-    public void listarUsuariosCadastrados(){
-        if (getPessoas().size() > 0){
-            
-            int cont = 1;
-            ArrayList<String> relatorioCadastro = new ArrayList();
-            for (Pessoa pessoa : mapeadorPessoa.getList()){
-                String classeCompleta = pessoa.getClass().toString();
-                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                //if(classe.equals("Visitante")){
-                if(pessoa instanceof Visitante){
-                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - ID: "+ ((Visitante)pessoa).getId() + " - TIPO CADASTRO: "+ pessoa.getClass().getName().toUpperCase());
-                    relatorioCadastro.add(linha);
-                }else{
-                    String linha = ("# "+cont+" - NOME: "+ pessoa.getNome() + " - MATRÍCULA: "+ ((UsuarioUFSC)pessoa).getMatricula()+ " - TIPO CADASTRO: "+ pessoa.getClass().getName().toUpperCase());
-                    relatorioCadastro.add(linha);
-                }
-                cont++;
-            }
-//            telaAdm.mostraListaCadastro(relatorioCadastro);
-        }else{
-            System.out.println("-> NÃO HÁ USUÁRIOS CADASTRADO NO SISTEMA");
-        }
-    }
-    
-    public void editarUsuario(int id) throws MatriculainvalidaException{
-        if (idJaExiste(id)){
-            for (Pessoa pessoa: mapeadorPessoa.getList()){
-                String classeCompleta = pessoa.getClass().toString();
-                String classe = classeCompleta.substring(classeCompleta.lastIndexOf(".")+1);
-                switch (classe) {
-                    case "Visitante":
-                        if(((Visitante)pessoa).getId() == id){
-//                            telaAdm.mostraTelaEditarVisitante(pessoa);
-                        }   break;
-                    case "UsuarioUFSC":
-                        if(((UsuarioUFSC) pessoa).getMatricula() == id){
-//                            telaAdm.mostraTelaEditarUsuarioUFSC(pessoa);
-                        }   break;
-                    default:
-                        if(((Estudante) pessoa).getMatricula() == id){
-//                            telaAdm.mostraTelaEditarEstudante(pessoa);
-                        }   break;         
-                }
-            }
-        }else{
-            throw new MatriculainvalidaException();
-        }    
-    }
-    
+  
     public void editarUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm, Pessoa pessoa) throws MatriculaJahExisteException{
         UsuarioUFSC usuarioUFSC = desempacotaUsuarioUFSC(conteudoTelaAdm);
         if(mapeadorPessoa.get(usuarioUFSC.getMatricula()) == null || mapeadorPessoa.get(usuarioUFSC.getMatricula()) == pessoa){
@@ -202,7 +141,7 @@ public class ControladorAdm {
         mapeadorPessoa.put(visitante);
         mapeadorPessoa.load();
     }
-    
+
     private Estudante desempacotaEstudante(ConteudoTelaAdm conteudoTelaAdm){
         return new Estudante (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin, conteudoTelaAdm.isencao);
     }
@@ -210,19 +149,11 @@ public class ControladorAdm {
     private UsuarioUFSC desempacotaUsuarioUFSC(ConteudoTelaAdm conteudoTelaAdm){
         return new UsuarioUFSC (conteudoTelaAdm.nome,conteudoTelaAdm.codigo, conteudoTelaAdm.admin);
     }
+
     private Visitante desempacotaVisitante(ConteudoTelaAdm conteudoTelaAdm){
-        /*int id =0;
-        boolean idRepetido = false;
-        do{ 
-            id = geraID();
-            if(idJaExiste(id)){
-                idRepetido=true;
-            }
-        }while (idRepetido);*/
         return new Visitante (conteudoTelaAdm.codigo, conteudoTelaAdm.nome);
     }
-    
-    
+
     public int geraID (){
         int id = 0;
         while(idJaExiste(id) || id == 0){
@@ -338,12 +269,13 @@ public class ControladorAdm {
                 dados[i][2] = ((UsuarioUFSC)pessoa).getMatricula();
             }
         }
-        
         telaAdmListar.mostraConteudoTela(dados);
     }
+
     public void chamaTelaAdmCadastro(){
         telaAdmCadastro.mostraConteudoTela();
     }
+
     public void chamaTelaAdmEditar(int linha) throws NaoSelecionadoException{
         if (linha <0 ){
             throw new NaoSelecionadoException(); 
@@ -352,6 +284,7 @@ public class ControladorAdm {
             telaAdmEditar.mostraConteudoTela(pessoa);
         }    
     }
+
     public void chamaTelaAdmExcluir(int linha) throws NaoSelecionadoException{
         if (linha <0 ){
             throw new NaoSelecionadoException(); 
@@ -360,12 +293,15 @@ public class ControladorAdm {
             telaAdmExcluir.mostraConteudoTela(pessoa);
         }
     }
+
     public void chamaTelaAddSaldo(){
         telaAdmAddSaldo.mostraConteudoTela();
     }
+
     public void chamaTelaAdm(){
         telaAdm.mostraConteudoTela();
     }
+
     public int getMatricula(Pessoa pessoa){
         if(pessoa instanceof Visitante){
              return((Visitante)pessoa).getId();

@@ -35,7 +35,6 @@ public class ControladorUsuario {
     private ControladorUsuario() {
         this.telaUsuario = new TelaUsuario();
     }
-    
 
     public Pessoa getPessoa() {
         return pessoa;
@@ -61,7 +60,6 @@ public class ControladorUsuario {
                     break;
             default:tipo = TipoRefeicao.ALMOCO;
                     break;
-        
         }
         
         float preco = 0;
@@ -101,6 +99,7 @@ public class ControladorUsuario {
     public void mostraTela(){
         telaUsuario.setVisible(true);
     }
+
     public void escondeTela(){
         telaUsuario.getContentPane().removeAll();
         telaUsuario.setVisible(false);
@@ -124,8 +123,6 @@ public class ControladorUsuario {
         Date mesPenultimo = null;
         Date mesQVem = null;
         
-        
-        
         try{
             mesAtual = dateFormat.parse("01-"+mesAnoAtual);
             
@@ -138,7 +135,6 @@ public class ControladorUsuario {
             cal.add(Calendar.MONTH, -1);
             mesPenultimo = cal.getTime();
             dia = new Date(mesPenultimo.getTime());
-            
             
         }catch(ParseException e){
             System.out.println(e);
@@ -157,7 +153,6 @@ public class ControladorUsuario {
             cal.setTime(dia);
             cal.add(Calendar.DAY_OF_MONTH, 1);
             dia = cal.getTime();
-            //dia = new Date(dia.getTime() + (1000*60*60*24));
         }
         while(dia.before(mesAtual)){
             System.out.println(dia);
@@ -171,7 +166,6 @@ public class ControladorUsuario {
             cal.setTime(dia);
             cal.add(Calendar.DAY_OF_MONTH, 1);
             dia = cal.getTime();
-            //dia = new Date(dia.getTime() + (1000*60*60*24));
         }        
         while(dia.before(mesQVem)){
             System.out.println(dia);
@@ -185,11 +179,8 @@ public class ControladorUsuario {
             cal.setTime(dia);
             cal.add(Calendar.DAY_OF_MONTH, 1);
             dia = cal.getTime();
-            //dia = new Date(dia.getTime() + (1000*60*60*24));
         }
-        
         telaUsuario.mostraRelatorioUsuario(countMes,countMesUltimo,countMesPenultimo);
-    
     }
     
     public String diaAtual (){
@@ -201,11 +192,12 @@ public class ControladorUsuario {
     
     public static ControladorUsuario getInstance(){
         return (controladorUsuario == null)? controladorUsuario = new ControladorUsuario() : controladorUsuario;
-
     }
+
     public void chamaTelaUsuario(){
         telaUsuario.mostraConteudoTela();
     }
+
     public void chamaTelaAdm(){
         ControladorPrincipal.getInstance().getControladorAdm().chamaTelaAdm();
     }

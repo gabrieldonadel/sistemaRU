@@ -42,9 +42,6 @@ public class TelaAdmAddSaldo extends TelaPadrao{
      public TelaAdmAddSaldo(){
         this.gerenciadorBotoes = new GerenciadorBotoes();
     }
-    
-    
-    
     @Override
     public void mostraConteudoTela() {
         getContentPane().removeAll();
@@ -80,7 +77,6 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         formatter.setMinimum(0);
         formatter.setMaximum(Integer.MAX_VALUE);
         formatter.setAllowsInvalid(false);
-        
         formatter.setCommitsOnValidEdit(true);
         textFieldMatricula = new JFormattedTextField(formatter);
         textFieldMatricula.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
@@ -88,7 +84,6 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         gbc.gridy = 1;
         gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        
         container.add(textFieldMatricula, gbc);
         
         //SALDO
@@ -99,10 +94,8 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         container.add(labelMatricula, gbc);
         
         //CAMPO SALDO
-        
         valor = new JFormattedTextField();
         valor.setFormatterFactory(new AbstractFormatterFactory() {
-
             @Override
             public AbstractFormatter getFormatter(JFormattedTextField tf) {
                 NumberFormat format = DecimalFormat.getInstance();
@@ -120,10 +113,7 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         gbc.gridy = 2;
         gbc.gridwidth = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        
         container.add(valor, gbc);
-        
-        
         
         //BOTAO ADICIONAR SALDO 
         gbc.gridx = 0;
@@ -134,7 +124,6 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         buttonAddSaldo.setPreferredSize(new Dimension(200, 50));
         container.add(buttonAddSaldo, gbc);
         
-        
         //BOTAO VOLTAR 
         gbc.gridx = 2;
         gbc.gridy = 3;
@@ -144,21 +133,17 @@ public class TelaAdmAddSaldo extends TelaPadrao{
         buttonVoltar.setPreferredSize(new Dimension(100, 50));
         container.add(buttonVoltar, gbc);
         
-        
         setSize(new Dimension(600, 400));
         mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
     
     private class GerenciadorBotoes implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent ae) {
             JButton botao = (JButton) ae.getSource();
             TelaPadrao telaExcluir = ControladorAdm.getInstance().getTelaAdmExcluir();
             System.out.println("clicou: "+botao.getText());
-            
             if(botao.equals(buttonVoltar)){
                 try{
                     getContentPane().removeAll();
@@ -171,19 +156,16 @@ public class TelaAdmAddSaldo extends TelaPadrao{
             }
             if(botao.equals(buttonAddSaldo)){
                 try{
-                    System.out.println("ENTROU");
-                    System.out.println(valor.getValue());
-                    System.out.println(textFieldMatricula.getValue());
                     ControladorAdm.getInstance().adicionarSaldo(new ConteudoTelaAdm((int)textFieldMatricula.getValue(),Float.parseFloat(valor.getValue().toString())));
                     ControladorAdm.getInstance().chamaTelaAdm();
                     JOptionPane.showMessageDialog(null, "Saldo adicionado com sucesso!");
+                    getContentPane().removeAll();
+                    escondeTela();
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     System.out.println(e);                    
                 }
             }
         }
-        
     }
-    
 }
