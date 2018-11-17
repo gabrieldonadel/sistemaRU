@@ -102,117 +102,20 @@ public class TelaUsuario extends TelaPadrao{
         mostraTela();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        /*
-        int opcao = -1;
-        do{
-            System.out.println("");
-            System.out.println("############################");
-            System.out.println("######  MENU USUARIO  ######");
-            System.out.println("############################");
-            System.out.println();
-            System.out.println("DIA ATUAL: " + ControladorUsuario.getInstance().diaAtual());
-            System.out.println();
-            System.out.println("[1] ALMOÇAR");
-            System.out.println("[2] JANTAR");
-            System.out.println("[3] CONSULTAR SALDO");
-            System.out.println("[4] GERAR RELATÓRIO ");
-            System.out.println("[0] DESLOGAR");
-            
-            try{
-                opcao = leInteiro();
-            }catch(InputInvalidoException e){
-                System.out.println(e);
-                continue;
-            }
-            
-            switch(opcao){
-                case 1: 
-                        try{
-                            ControladorUsuario.getInstance().validaRefeicao(0);
-                        }catch(Exception e){System.out.println(e);}
-                        break;
-                case 2: 
-                        try{
-                            ControladorUsuario.getInstance().validaRefeicao(1);
-                        }catch(Exception e){System.out.println(e);}
-                        break;
-                        
-                case 3: mostraTelaSaldo();
-                        break;
-                        
-                case 4: ControladorUsuario.getInstance().relatorioRefeicao();
-                        break;
-                
-            }
-            
-         
-        }while (opcao!=0);
-        */
-    }
+    } 
     
-   /* public void mostraConteudoTelaAdm() {
-        int opcao = -1;
-        do{
-            System.out.println("");
-            System.out.println("############################");
-            System.out.println("######  MENU USUARIO  ######");
-            System.out.println("############################");
-            System.out.println();
-            System.out.println("DIA ATUAL: " + ControladorUsuario.getInstance().diaAtual());
-            System.out.println();
-            System.out.println("[1] ALMOÇAR");
-            System.out.println("[2] JANTAR");
-            System.out.println("[3] CONSULTAR SALDO");
-            System.out.println("[4] GERAR RELATÓRIO");
-            System.out.println("[5] ENTRAR NO MENU DE ADMINISTRADOR");
-            System.out.println("[0] DESLOGAR");
-            
-            try{
-                opcao = leInteiro();
-            }catch(InputInvalidoException e){
-                System.out.println(e);
-                continue;
-            }
-            
-            switch(opcao){
-                case 1: 
-                        try{
-                            ControladorUsuario.getInstance().validaRefeicao(0);
-                        }catch(Exception e){System.out.println(e);}
-                        break;
-                case 2: 
-                        try{
-                            ControladorUsuario.getInstance().validaRefeicao(1);
-                        }catch(Exception e){System.out.println(e);}
-                        break;
-                        
-                case 3: mostraTelaSaldo();
-                        break;
-                        
-                case 4: ControladorUsuario.getInstance().relatorioRefeicao();
-                        break;
-                        
-                case 5: ControladorUsuario.getInstance().getControladorPrincipal().getControladorAdm().getTelaAdm().mostraConteudoTela();
-                
-            }
-         
-        }while (opcao!=0);
-    }*/
-
     public String mostraTelaSaldo() {
-        return "SALDO ATUAL DISPONIVEL: R$ "+ControladorUsuario.getInstance().consultarSaldo();
+        return "Saldo atual disponível: R$ "+ControladorUsuario.getInstance().consultarSaldo();
     }
 
     public String mostraSucessoRefeicao() {
-        return "SUA REFEIÇÃO FOI REALIZADA COM SUCESSO\n"+mostraTelaSaldo();
+        return "Refeição foi realizada com sucesso\n"+mostraTelaSaldo();
     }
 
     public void mostraRelatorioUsuario(int nRefeicoesMes1, int nRefeicoesMes2, int nRefeicoesMes3) {
-        String s ="REFEIÇÕES NO MES: "+nRefeicoesMes1+"\n";
-        s +="REFEIÇÕES NO ÚLTIMO MES: "+nRefeicoesMes2+"\n";
-        s +="REFEIÇÕES NO PENÚLTIMO MES: "+nRefeicoesMes3+"\n";
-        s +="\n";
-        s +="#######################";
+        String s ="Refeições no mês: "+nRefeicoesMes1+"\n";
+        s +="Refeições no último mês: "+nRefeicoesMes2+"\n";
+        s +="Refeições no penúltimo mês: "+nRefeicoesMes3+"\n";
         
        JOptionPane.showMessageDialog(null, s);
     }
@@ -230,7 +133,7 @@ public class TelaUsuario extends TelaPadrao{
             if(botao.equals(buttonAlmoco)){
                 try{
                     ControladorUsuario.getInstance().validaRefeicao(0);
-                    JOptionPane.showMessageDialog(null, mostraTelaSaldo());
+                    JOptionPane.showMessageDialog(null, "Refeição foi realizada com sucesso\n\n"+mostraTelaSaldo());
                     
                     
                 }catch(Exception e){
@@ -241,7 +144,7 @@ public class TelaUsuario extends TelaPadrao{
             }else if(botao.equals(buttonJantar)){
                 try{
                     ControladorUsuario.getInstance().validaRefeicao(1);
-                    JOptionPane.showMessageDialog(null, mostraTelaSaldo());
+                    JOptionPane.showMessageDialog(null, "Refeição foi realizada com sucesso\n\n"+mostraTelaSaldo());
                     
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage());

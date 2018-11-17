@@ -90,6 +90,7 @@ public class TelaRelatorioAdm extends TelaPadrao{
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.CENTER;
         container.add(labelDataFinal, gbc);
         
         try{
@@ -106,7 +107,7 @@ public class TelaRelatorioAdm extends TelaPadrao{
         buttonRelatorio = new JButton();
         buttonRelatorio.setText("Gerar Relatório");
         buttonRelatorio.addActionListener(gerenciadorBotoes);
-        buttonRelatorio.setPreferredSize(new Dimension(80, 40));
+        buttonRelatorio.setPreferredSize(new Dimension(150, 40));
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth =2;
