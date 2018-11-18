@@ -28,6 +28,16 @@ public class MapeadorRestaurante {
         this.cacheRestaurante = new Restaurante();
         load();
     }
+    
+    public void proximoDia(){
+        cacheRestaurante.proximoDia();
+        persist();
+    }
+    
+    public void proximoMes(){
+        cacheRestaurante.proximoMes();
+        persist();
+    }
     public void load(){
         try{
             FileInputStream fIS = new FileInputStream(filename);

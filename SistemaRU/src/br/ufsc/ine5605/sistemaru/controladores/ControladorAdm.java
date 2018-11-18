@@ -241,7 +241,7 @@ public class ControladorAdm {
     
     public void passarProximoDia(){
         System.out.println("-> PROXIMO DIA");
-        ControladorPrincipal.getInstance().getRestaurante().proximoDia();
+        ControladorPrincipal.getInstance().getMapeadorRestaurante().proximoDia();
         TelaPadrao.setData(ControladorPrincipal.getInstance().dateToString(ControladorPrincipal.getInstance().diaAtual()));
         telaAdm.mostraTela();
         telaAdm.operacaoRealizada();
@@ -249,7 +249,7 @@ public class ControladorAdm {
     
     public void passarProximoMes(){
         System.out.println("-> PROXIMO MÊS");
-        ControladorPrincipal.getInstance().getRestaurante().proximoMes();
+        ControladorPrincipal.getInstance().getMapeadorRestaurante().proximoMes();
         TelaPadrao.setData(ControladorPrincipal.getInstance().dateToString(ControladorPrincipal.getInstance().diaAtual()));
         telaAdm.mostraTela();
         telaAdm.operacaoRealizada();

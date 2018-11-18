@@ -103,6 +103,7 @@ public class TelaPrincipal extends TelaPadrao{
                         escondeTela();
                     }catch(MatriculainvalidaException ex){
                         System.out.println(ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Preencha o campo com sua matricula");
