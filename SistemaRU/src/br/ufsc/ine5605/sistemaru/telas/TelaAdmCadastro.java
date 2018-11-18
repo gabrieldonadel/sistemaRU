@@ -6,6 +6,8 @@
 package br.ufsc.ine5605.sistemaru.telas;
 
 import br.ufsc.ine5605.sistemaru.controladores.ControladorAdm;
+import br.ufsc.ine5605.sistemaru.exceptions.PrencheCampoMatriculaException;
+import br.ufsc.ine5605.sistemaru.exceptions.PrencheCampoNomeException;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -321,17 +323,35 @@ public class TelaAdmCadastro extends TelaPadrao{
                 }else if(botao.equals(buttonCadastrar)){
                     try{
                         if (box.getSelectedItem().toString().equals("USUÁRIO UFSC")){
-                            ControladorAdm.getInstance().cadastraUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem())));
-                            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-                            getContentPane().removeAll();
-                            escondeTela();
-                            ControladorAdm.getInstance().chamaTelaAdmListar();
+                            if (!textFieldNome.getText().equals("")){
+                                if(!textFieldMatricula.getText().equals("")){
+                                    ControladorAdm.getInstance().cadastraUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem())));
+                                    JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                                    getContentPane().removeAll();
+                                    escondeTela();
+                                    ControladorAdm.getInstance().chamaTelaAdmListar();
+                                }else{
+                                    throw new PrencheCampoMatriculaException();
+                                }
+                            }else{
+                                throw new PrencheCampoNomeException();                            
+                            }
+                            
                         }else if (box.getSelectedItem().toString().equals("ESTUDANTE")){
-                            ControladorAdm.getInstance().cadastraEstudante(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem()),StringToBoolean((String)boxIsento.getSelectedItem())));
-                            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-                            getContentPane().removeAll();
-                            escondeTela();
-                            ControladorAdm.getInstance().chamaTelaAdmListar();
+                            if (!textFieldNome.getText().equals("")){
+                                if(!textFieldMatricula.getText().equals("")){
+                                    ControladorAdm.getInstance().cadastraEstudante(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem()),StringToBoolean((String)boxIsento.getSelectedItem())));
+                                    JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                                    getContentPane().removeAll();
+                                    escondeTela();
+                                    ControladorAdm.getInstance().chamaTelaAdmListar();
+                                }else{
+                                    throw new PrencheCampoMatriculaException();
+                                }
+                            }else{
+                                throw new PrencheCampoNomeException();                            
+                            }    
+                                    
                         }else{
                             ControladorAdm.getInstance().cadastraVisitante(new ConteudoTelaAdm(textFieldNome.getText()));
                             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
