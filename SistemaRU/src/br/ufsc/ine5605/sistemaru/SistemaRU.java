@@ -9,6 +9,7 @@ import br.ufsc.ine5605.sistemaru.exceptions.MatriculainvalidaException;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorPrincipal;
 import br.ufsc.ine5605.sistemaru.controladores.ControladorAdm;
 import br.ufsc.ine5605.sistemaru.exceptions.MatriculaJahExisteException;
+import br.ufsc.ine5605.sistemaru.exceptions.PrencheCampoMatriculaException;
 import br.ufsc.ine5605.sistemaru.exceptions.PrencheCampoNomeException;
 import br.ufsc.ine5605.sistemaru.telas.ConteudoTelaAdm;
 
@@ -22,7 +23,7 @@ public class SistemaRU {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws PrencheCampoNomeException {
+    public static void main(String[] args) {
         
         ControladorPrincipal a = ControladorPrincipal.getInstance();
         ControladorAdm b = a.getControladorAdm();
@@ -37,7 +38,8 @@ public class SistemaRU {
             b.cadastraVisitante(z);
             b.cadastraEstudante(c);
             b.cadastraUsuarioUFSC(d);
-        }catch (MatriculaJahExisteException e){System.out.println(e);};
+        }catch (Exception e){System.out.println(e);};
+       
         
         a.getTelaPrincipal().mostraConteudoTela();
         
