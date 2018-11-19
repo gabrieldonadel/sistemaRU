@@ -36,6 +36,7 @@ public class TelaAdmExcluir extends TelaPadrao {
     private JButton buttonVoltar;
     private GerenciadorBotoes gerenciadorBotoes;
     private Pessoa pessoa;
+    
     public TelaAdmExcluir(){
         this.gerenciadorBotoes = new GerenciadorBotoes();
     }

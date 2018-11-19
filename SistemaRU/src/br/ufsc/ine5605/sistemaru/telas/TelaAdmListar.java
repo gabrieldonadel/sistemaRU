@@ -38,7 +38,7 @@ public class TelaAdmListar extends TelaPadrao {
         this.gerenciadorBotoes = new GerenciadorBotoes();
     }
     
-    public JTable getTabela() {
+    private JTable getTabela() {
         return tabela;
     }
     

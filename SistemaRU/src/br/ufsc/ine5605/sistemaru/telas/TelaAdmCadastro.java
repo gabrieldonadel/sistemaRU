@@ -82,7 +82,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void AdicionaCamposUsuario(){
+    private void adicionaCamposUsuario(){
         removeComponentes();
         //CAMPO NOME       
         labelNome = new JLabel();
@@ -158,7 +158,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         
         mostraTela();
     }
-    public void AdicionaCamposEstudante(){
+    private void adicionaCamposEstudante(){
         removeComponentes();
         //CAMPO NOME       
         labelNome = new JLabel();
@@ -250,7 +250,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         mostraTela();
         
     }
-    public void AdicionaCamposVisitante(){
+    private void adicionaCamposVisitante(){
         removeComponentes();
         //CAMPO NOME
         labelNome = new JLabel();
@@ -279,7 +279,7 @@ public class TelaAdmCadastro extends TelaPadrao{
         mostraTela();
     }
     
-    public boolean StringToBoolean(String s){
+    private boolean stringToBoolean(String s){
         return s.equals("Sim");
     }
     
@@ -325,7 +325,7 @@ public class TelaAdmCadastro extends TelaPadrao{
                         if (box.getSelectedItem().toString().equals("USUÁRIO UFSC")){
                             if (!textFieldNome.getText().equals("")){
                                 if(!textFieldMatricula.getText().equals("")){
-                                    ControladorAdm.getInstance().cadastraUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem())));
+                                    ControladorAdm.getInstance().cadastraUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),stringToBoolean((String)boxAdm.getSelectedItem())));
                                     JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
                                     getContentPane().removeAll();
                                     escondeTela();
@@ -340,7 +340,7 @@ public class TelaAdmCadastro extends TelaPadrao{
                         }else if (box.getSelectedItem().toString().equals("ESTUDANTE")){
                             if (!textFieldNome.getText().equals("")){
                                 if(!textFieldMatricula.getText().equals("")){
-                                    ControladorAdm.getInstance().cadastraEstudante(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),StringToBoolean((String)boxAdm.getSelectedItem()),StringToBoolean((String)boxIsento.getSelectedItem())));
+                                    ControladorAdm.getInstance().cadastraEstudante(new ConteudoTelaAdm(textFieldNome.getText(),(int)textFieldMatricula.getValue(),stringToBoolean((String)boxAdm.getSelectedItem()),stringToBoolean((String)boxIsento.getSelectedItem())));
                                     JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
                                     getContentPane().removeAll();
                                     escondeTela();
@@ -369,11 +369,11 @@ public class TelaAdmCadastro extends TelaPadrao{
                 JComboBox botaoBox = (JComboBox) ae.getSource();
                 String tipo = (String)botaoBox.getSelectedItem();
                 switch (tipo){
-                    case "USUÁRIO UFSC": AdicionaCamposUsuario();
+                    case "USUÁRIO UFSC": adicionaCamposUsuario();
                         break;
-                    case "VISITANTE": AdicionaCamposVisitante();
+                    case "VISITANTE": adicionaCamposVisitante();
                         break;
-                    case "ESTUDANTE": AdicionaCamposEstudante();
+                    case "ESTUDANTE": adicionaCamposEstudante();
                         break;
                         
                 }

@@ -177,7 +177,7 @@ public class TelaAdmEditar extends TelaPadrao{
         
     }
     
-    public boolean StringToBoolean(String s){
+    private boolean stringToBoolean(String s){
         return s.equals("Sim");
     }
 
@@ -218,7 +218,7 @@ public class TelaAdmEditar extends TelaPadrao{
                     }
                 }else if(pessoa instanceof Estudante){
                     try{
-                        ControladorAdm.getInstance().editarEstudante(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), StringToBoolean(comboBoxAdmin.getSelectedItem().toString()), StringToBoolean(comboBoxIsento.getSelectedItem().toString())), pessoa);
+                        ControladorAdm.getInstance().editarEstudante(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), stringToBoolean(comboBoxAdmin.getSelectedItem().toString()), stringToBoolean(comboBoxIsento.getSelectedItem().toString())), pessoa);
                         ControladorAdm.getInstance().escondeTela(ControladorAdm.getInstance().getTelaAdmEditar());
                         JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso.");
                         ControladorAdm.getInstance().chamaTelaAdmListar();
@@ -227,7 +227,7 @@ public class TelaAdmEditar extends TelaPadrao{
                     }
                 }else{
                     try{
-                        ControladorAdm.getInstance().editarUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), StringToBoolean(comboBoxAdmin.getSelectedItem().toString())),pessoa);
+                        ControladorAdm.getInstance().editarUsuarioUFSC(new ConteudoTelaAdm(textFieldNome.getText(), (int)formattedTextFieldMatricula.getValue(), stringToBoolean(comboBoxAdmin.getSelectedItem().toString())),pessoa);
                         ControladorAdm.getInstance().escondeTela(ControladorAdm.getInstance().getTelaAdmEditar());
                         JOptionPane.showMessageDialog(null, "Alterações realizadas com sucesso.");
                         ControladorAdm.getInstance().chamaTelaAdmListar();
